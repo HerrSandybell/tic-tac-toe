@@ -1,0 +1,12 @@
+.form-group {
+  margin: 10px auto;
+}
+
+label {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.form-control {
+  padding: 2.5px;
+}

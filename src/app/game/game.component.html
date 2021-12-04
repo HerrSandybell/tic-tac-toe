@@ -1,0 +1,51 @@
+<div class="center-everything">
+  <div>
+    <p>
+      Active player: {{ gameService.activePlayer }} ({{
+        gameService.tokenType
+      }})
+    </p>
+
+    <table>
+      <tr *ngFor="let row of gameService.gameboard; let rowNum = index">
+        <td
+          class="square"
+          *ngFor="
+            let box of gameService.gameboard[rowNum];
+            let columnNum = index
+          "
+          (click)="placeToken(rowNum, columnNum)"
+        >
+          <div
+            class="token"
+            *ngIf="gameService.gameboard[rowNum][columnNum] === 'X'"
+          >
+            X
+          </div>
+          <div
+            class="token"
+            *ngIf="gameService.gameboard[rowNum][columnNum] === 'O'"
+          >
+            O
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="center-everything" *ngIf="gameService.gameStatus === 'GAME_OVER'">
+    <h3>{{ gameService.endingStatement }}</h3>
+    <button class="btn btn-danger" (click)="restartGame()">
+      START NEW GAME
+    </button>
+  </div>
+</div>
+<div class="center-everything loader" *ngIf="gameService.parsingResponse">
+  <div class="sk-chase">
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+  </div>
+</div>
